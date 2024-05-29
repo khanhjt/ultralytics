@@ -701,7 +701,7 @@ class Metric(SimpleClass):
         Returns:
             (float): The mAP at an IoU threshold of 0.5.
         """
-        return self.all_ap[:, 0].mean() if len(self.all_ap) else 0.0
+        return self.all_ap[:, 9].mean() if len(self.all_ap) else 0.0
 
     @property
     def map75(self):
@@ -849,7 +849,7 @@ class DetMetrics(SimpleClass):
     @property
     def keys(self):
         """Returns a list of keys for accessing specific metrics."""
-        return ["metrics/precision(B)", "metrics/recall(B)", "metrics/mAP50(B)", "metrics/mAP50-95(B)"]
+        return ["metrics/precision(B)", "metrics/recall(B)", "metrics/mAP95(B)", "metrics/mAP50-95(B)"]
 
     def mean_results(self):
         """Calculate mean of detected objects & return precision, recall, mAP50, and mAP50-95."""
@@ -975,7 +975,7 @@ class SegmentMetrics(SimpleClass):
         return [
             "metrics/precision(B)",
             "metrics/recall(B)",
-            "metrics/mAP50(B)",
+            "metrics/mAP95(B)",
             "metrics/mAP50-95(B)",
             "metrics/precision(M)",
             "metrics/recall(M)",
@@ -1117,7 +1117,7 @@ class PoseMetrics(SegmentMetrics):
         return [
             "metrics/precision(B)",
             "metrics/recall(B)",
-            "metrics/mAP50(B)",
+            "metrics/mAP95(B)",
             "metrics/mAP50-95(B)",
             "metrics/precision(P)",
             "metrics/recall(P)",
@@ -1248,7 +1248,7 @@ class OBBMetrics(SimpleClass):
     @property
     def keys(self):
         """Returns a list of keys for accessing specific metrics."""
-        return ["metrics/precision(B)", "metrics/recall(B)", "metrics/mAP50(B)", "metrics/mAP50-95(B)"]
+        return ["metrics/precision(B)", "metrics/recall(B)", "metrics/mAP95(B)", "metrics/mAP50-95(B)"]
 
     def mean_results(self):
         """Calculate mean of detected objects & return precision, recall, mAP50, and mAP50-95."""
